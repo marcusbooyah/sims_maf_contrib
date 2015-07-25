@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 # This script needs to be _sourced_ from travis.yml
 # so $PATH is set up correctly
