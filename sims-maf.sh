@@ -17,6 +17,7 @@ fi
 ERROR=0
 #git branch TRAVIS_BRANCH
 git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
+cat changes.out
 for f in *.ipynb; do
 	echo "Processing $f"
 	if [[ "$f" == SDSSSlicer.ipynb ]]; then
@@ -31,7 +32,6 @@ for f in *.ipynb; do
 		echo "$f" failed.
 		ERROR=1
 	fi
-fi
 done
 exit $ERROR
 
