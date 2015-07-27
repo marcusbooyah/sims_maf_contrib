@@ -16,18 +16,20 @@ fi
 echo "Setting up environment"
 ERROR=0
 for f in *.ipynb; do 
-	echo "Processing $f"
-	if [[ "$f" == SDSSSlicer.ipynb ]]; then
-		continue
-	fi
-	if [[ "$f" == MAFCameraGeom.ipynb ]]; then
-                continue
-        fi
-	if runipy "$f" "tested-$f" 2>"$f.out"; then
-		echo "$f" passed.
-	else
-		echo "$f" failed.
-		ERROR=1
+	if [[ -f git diff --name-only $TRAVIS_BRANCH HEAD ]]; then	
+		echo "Processing $f"
+		if [[ "$f" == SDSSSlicer.ipynb ]]; then
+			continue
+		fi
+		if [[ "$f" == MAFCameraGeom.ipynb ]]; then
+        	        continue
+        	fi
+		if runipy "$f" "tested-$f" 2>"$f.out"; then
+			echo "$f" passed.
+		else
+			echo "$f" failed.
+			ERROR=1
+		fi
 	fi
 done
 exit $ERROR
