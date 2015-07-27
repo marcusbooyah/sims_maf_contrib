@@ -3,8 +3,8 @@ echo "Setting up enviromnent."
 source eups-setups.sh
 #conda install lsst-sims-maf -y
 pip install runipy
-eups declare -m none -r none sims_sed_library 2014.10.06
-eups declare -m none -r none sims_dustmaps 0.10.1
+#eups declare -m none -r none sims_sed_library 2014.10.06
+#eups declare -m none -r none sims_dustmaps 0.10.1
 setup sims_maf
 git pull > /dev/null 2>&1
 cd tutorials
@@ -15,11 +15,12 @@ if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
 fi 
 ERROR=0
-#git branch TRAVIS_BRANCH
+git checkout master
 git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
 git diff --name-only master HEAD > masterchanges.out
-echo "these are the changed files"
+echo "these are the changed files: changes.out"
 cat changes.out
+echo "these are the changed files: masterchanges.out"
 cat masterchanges.out
 for f in *.ipynb; do
 	echo "Processing $f"
