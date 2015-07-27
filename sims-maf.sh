@@ -17,8 +17,10 @@ fi
 ERROR=0
 #git branch TRAVIS_BRANCH
 git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
+git diff --name-only master HEAD > masterchanges.out
 echo "these are the changed files"
 cat changes.out
+cat masterchanges.out
 for f in *.ipynb; do
 	echo "Processing $f"
 	if [[ "$f" == SDSSSlicer.ipynb ]]; then
