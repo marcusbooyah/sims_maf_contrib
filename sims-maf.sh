@@ -17,6 +17,7 @@ fi
 ERROR=0
 #git branch TRAVIS_BRANCH
 git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
+echo "these are the changed files"
 cat changes.out
 for f in *.ipynb; do
 	echo "Processing $f"
