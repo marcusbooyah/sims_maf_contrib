@@ -1,4 +1,5 @@
 set -e
+echo "Setting up enviromnent."
 source eups-setups.sh
 #conda install lsst-sims-maf -y
 pip install runipy
@@ -13,24 +14,24 @@ wget -nc -q http://www.astro.washington.edu/users/lynnej/opsim/ops2_1114_sqlite.
 if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
 fi 
-echo "Setting up environment"
 ERROR=0
-for f in *.ipynb; do 
-	if [[ -f git diff --name-only $TRAVIS_BRANCH HEAD ]]; then	
-		echo "Processing $f"
-		if [[ "$f" == SDSSSlicer.ipynb ]]; then
-			continue
-		fi
-		if [[ "$f" == MAFCameraGeom.ipynb ]]; then
-        	        continue
-        	fi
-		if runipy "$f" "tested-$f" 2>"$f.out"; then
-			echo "$f" passed.
-		else
-			echo "$f" failed.
-			ERROR=1
-		fi
+#git branch TRAVIS_BRANCH
+git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
+for f in *.ipynb: do
+	echo "Processing $f"
+	if [[ "$f" == SDSSSlicer.ipynb ]]; then
+		continue
 	fi
+	if [[ "$f" == MAFCameraGeom.ipynb ]]; then
+          continue
+       	fi
+	if runipy "$f" "tested-$f" 2>"$f.out"; then
+		echo "$f" passed.
+	else
+		echo "$f" failed.
+		ERROR=1
+	fi
+fi
 done
 exit $ERROR
 
