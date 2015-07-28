@@ -28,6 +28,7 @@ if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
                         ERROR=1
                 fi
 	done
+	exit $ERROR
 else
 	for f in *.ipynb; do
 		echo "Processing $f"
