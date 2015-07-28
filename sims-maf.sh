@@ -15,13 +15,7 @@ if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
 fi 
 ERROR=0
-git checkout master
-git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
-git diff --name-only master HEAD > masterchanges.out
-echo "these are the changed files: changes.out"
-cat changes.out
-echo "these are the changed files: masterchanges.out"
-cat masterchanges.out
+git diff --name-only $TRAVIS_BRANCH HEAD
 for f in *.ipynb; do
 	echo "Processing $f"
 	if [[ "$f" == SDSSSlicer.ipynb ]]; then
