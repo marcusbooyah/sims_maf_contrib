@@ -18,14 +18,15 @@ ERROR=0
 if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
 	cd ../
 	git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
-	for f in changes.out; do 
-		echo "Processing $f"
-		if runipy "$f" "tested-$f" 2>"$f.out"; then
-                	echo "$f" passed.
-        	else
-            		echo "$f" failed.
-                	ERROR=1
-        	fi
+	cat changes.out | while read line
+	do
+   		echo "Processing $line"
+                if runipy "$line" "tested-$line" 2>"$line.out"; then
+                        echo "$line" passed.
+                else
+                    	echo "$line" failed.
+                        ERROR=1
+                fi
 	done
 else
 	for f in *.ipynb; do
