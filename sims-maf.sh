@@ -3,8 +3,8 @@ echo "Setting up enviromnent."
 source eups-setups.sh
 #conda install lsst-sims-maf -y
 pip install runipy
-#eups declare -m none -r none sims_sed_library 2014.10.06
-#eups declare -m none -r none sims_dustmaps 0.10.1
+eups declare -m none -r none sims_sed_library 2014.10.06
+eups declare -m none -r none sims_dustmaps 0.10.1
 setup sims_maf
 git pull > /dev/null 2>&1
 cd tutorials
