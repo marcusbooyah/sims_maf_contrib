@@ -1,6 +1,6 @@
 set -x
-export PATH="/root/remote/miniconda/bin:$PATH"
-export PATH="/root/remote/conda-lsst/bin:$PATH"
+export PATH="/remote/miniconda/bin:$PATH"
+export PATH="/remote/conda-lsst/bin:$PATH"
 source eups-setups.sh
 #mkdir remote
 cd remote
