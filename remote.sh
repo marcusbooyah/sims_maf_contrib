@@ -23,13 +23,12 @@ wget -nc -q http://www.astro.washington.edu/users/lynnej/opsim/ops2_1114_sqlite.
 #http://ops2.tuc.noao.edu/runs/ops2_1114/data/ops2_1114_sqlite.db
 if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
-fi 
+fi
 echo done.
 echo
 ERROR=0
 echo "Pull request:"
 echo $TRAVIS_PULL_REQUEST
-set -x
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
 	for f in *.ipynb; do
 		echo "Processing $f"
@@ -39,7 +38,7 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
 		if [[ "$f" == MAFCameraGeom.ipynb ]]; then
           	continue
        		fi
-		if runipy "$f" "tested-$f" 2>"$f.out"; then
+		if runipy "$f" "tested-$f" ; then #2>"$f.out"; then
 			echo "$f" passed.
 			echo
 		else
