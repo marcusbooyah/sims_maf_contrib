@@ -29,6 +29,7 @@ echo
 ERROR=0
 echo "Pull request:"
 echo $TRAVIS_PULL_REQUEST
+set -x
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
 	for f in *.ipynb; do
 		echo "Processing $f"
