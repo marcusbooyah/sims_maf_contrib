@@ -1,7 +1,7 @@
 set -e
-#export PATH="/remote/miniconda/bin:$PATH"
-#export PATH="/remote/conda-lsst/bin:$PATH"
-#source eups-setups.sh
+export PATH="~/remote/miniconda/bin:$PATH"
+export PATH="~/remote/conda-lsst/bin:$PATH"
+source eups-setups.sh
 #mkdir remote
 cd remote
 #conda config --set always_yes yes --set changeps1 no
