@@ -28,7 +28,25 @@ echo done.
 echo
 ERROR=0
 echo $TRAVIS_PULL_REQUEST
-if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
+if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+	for f in *.ipynb; do
+		echo "Processing $f"
+		if [[ "$f" == SDSSSlicer.ipynb ]]; then
+			continue
+		fi
+		if [[ "$f" == MAFCameraGeom.ipynb ]]; then
+          	continue
+       		fi
+		if runipy "$f" "tested-$f" 2>"$f.out"; then
+			echo "$f" passed.
+			echo
+		else
+			echo "$f" failed.
+			ERROR=1
+			echo
+		fi
+	done
+else
 	git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
 	cat changes.out | grep -o 'tutorials/.*\.ipynb$' | cut -f2- -d'/' > notebooks.out
 	echo The following IPython notebooks will be tested:
@@ -47,23 +65,6 @@ if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
                 	fi
 		done < notebooks.out
 	exit $ERROR
-else
-	for f in *.ipynb; do
-		echo "Processing $f"
-		if [[ "$f" == SDSSSlicer.ipynb ]]; then
-			continue
-		fi
-		if [[ "$f" == MAFCameraGeom.ipynb ]]; then
-          	continue
-       		fi
-		if runipy "$f" "tested-$f" 2>"$f.out"; then
-			echo "$f" passed.
-			echo
-		else
-			echo "$f" failed.
-			ERROR=1
-			echo
-		fi
-	done
+	
 fi
 exit $ERROR
