@@ -8,7 +8,7 @@ install:
 - chmod 600 sims-key
 - eval `ssh-agent -s`
 - ssh-add sims-key
-- ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@104.236.155.138 'bash -s' < remote.sh
+- ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@104.236.155.138 "TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST" 'bash -s' < remote.sh
 - source ./prepare.sh
 script:
 - df -kh .
