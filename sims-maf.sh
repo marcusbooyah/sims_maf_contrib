@@ -1,5 +1,7 @@
 set -e
 echo "Setting up enviromnent."
+export PATH="~/remote/miniconda/bin:$PATH"
+export PATH="~/remote/conda-lsst/bin:$PATH"
 source eups-setups.sh
 ##conda install lsst-sims-maf -y
 pip install runipy > /dev/null
