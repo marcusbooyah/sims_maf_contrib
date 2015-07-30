@@ -1,4 +1,4 @@
-set -x
+set -e
 #export PATH="/remote/miniconda/bin:$PATH"
 #export PATH="/remote/conda-lsst/bin:$PATH"
 #source eups-setups.sh
