@@ -1,5 +1,5 @@
 set -x
-mkdir remote
+#mkdir remote
 cd remote
 # keep the pkginfo cache database outside the conda-lsst dir
 # so Travis can cache it easily.
