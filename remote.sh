@@ -1,5 +1,6 @@
 set -x
-
+mkdir remote
+cd remote
 # keep the pkginfo cache database outside the conda-lsst dir
 # so Travis can cache it easily.
 mkdir -p pkginfo-cache
@@ -45,4 +46,8 @@ conda clean -y -t -p -s > /dev/null 2>&1
 conda remove -q -y lsst-sims-sed-library > /dev/null 2>&1
 conda remove -q -y lsst-sims-dustmaps > /dev/null 2>&1
 wget https://raw.githubusercontent.com/marcusbooyah/sims_maf_contrib/master/sims-maf.sh
+mkdir demos
+cd demos
+git clone git@github.com:marcusbooyah/sims_maf_contrib.git
+cd sims_maf_contrib
 bash sims-maf.sh
