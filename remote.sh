@@ -1,4 +1,7 @@
 set -x
+export PATH="/root/remote/miniconda/bin:$PATH"
+export PATH="/root/remote/conda-lsst/bin:$PATH"
+source eups-setups.sh
 #mkdir remote
 cd remote
 # keep the pkginfo cache database outside the conda-lsst dir
