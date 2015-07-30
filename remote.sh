@@ -27,6 +27,7 @@ fi
 echo done.
 echo
 ERROR=0
+echo $TRAVIS_PULL_REQUEST
 if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
 	git diff --name-only $TRAVIS_BRANCH HEAD > changes.out
 	cat changes.out | grep -o 'tutorials/.*\.ipynb$' | cut -f2- -d'/' > notebooks.out
