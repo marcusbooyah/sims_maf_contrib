@@ -27,6 +27,7 @@ fi
 echo done.
 echo
 ERROR=0
+echo "Pull request:"
 echo $TRAVIS_PULL_REQUEST
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
 	for f in *.ipynb; do
