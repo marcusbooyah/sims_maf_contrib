@@ -4,6 +4,7 @@ python:
 before_install:
 - openssl aes-256-cbc -K $encrypted_8f2e1fe0e7f3_key -iv $encrypted_8f2e1fe0e7f3_iv -in sims-key.enc -out sims-key -d
 install:
+- echo $TRAVIS_PULL_REQUEST
 - chmod 600 sims-key
 - eval `ssh-agent -s`
 - ssh-add sims-key
