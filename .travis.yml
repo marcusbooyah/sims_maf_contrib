@@ -13,3 +13,5 @@ install:
 script:
 - df -kh .
 - bash sims-maf.sh
+- bash getfiles.sh
+- bash runipy.sh
