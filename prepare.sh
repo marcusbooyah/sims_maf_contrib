@@ -45,9 +45,3 @@ else
 fi
 
 hash -r
-conda config --set always_yes yes --set changeps1 no
-conda config --add channels http://eupsforge.net/conda/dev
-conda install -q lsst-sims-maf > /dev/null 2>&1
-conda clean -y -t -p -s > /dev/null 2>&1
-conda remove -q -y lsst-sims-sed-library > /dev/null 2>&1
-conda remove -q -y lsst-sims-dustmaps > /dev/null 2>&1
