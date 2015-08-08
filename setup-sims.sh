@@ -4,10 +4,10 @@ echo "Setting up sims_maf environment"
 #pip install runipy > /dev/null
 conda config --set always_yes yes --set changeps1 no
 conda config --add channels http://eupsforge.net/conda/dev
-conda install lsst-sims-maf #> /dev/null 2>&1
-conda clean -y -t -p -s #> /dev/null 2>&1
-conda remove -y lsst-sims-sed-library #> /dev/null 2>&1
-conda remove -y lsst-sims-dustmaps #> /dev/null 2>&1
+conda install -q lsst-sims-maf > /dev/null 2>&1
+conda clean -y -t -p -s > /dev/null 2>&1
+conda remove -y -q lsst-sims-sed-library > /dev/null 2>&1
+conda remove -y -q lsst-sims-dustmaps > /dev/null 2>&1
 source eups-setups.sh
 eups declare -m none -r none sims_sed_library 2014.10.06
 eups declare -m none -r none sims_dustmaps 0.10.1
