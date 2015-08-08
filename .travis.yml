@@ -15,6 +15,6 @@ install:
 - export PATH="~/conda-lsst/bin:$PATH"
 script:
 - df -kh .
-- bash sims-maf.sh
+- bash setup-sims.sh
 - bash getfiles.sh
 - bash runipy.sh
