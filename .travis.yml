@@ -1,20 +1,15 @@
 language: python
 python:
 - 2.7
-before_install:
-- openssl aes-256-cbc -K $encrypted_8f2e1fe0e7f3_key -iv $encrypted_8f2e1fe0e7f3_iv -in sims-key.enc -out sims-key -d
 install:
 - echo $TRAVIS_PULL_REQUEST
-#- chmod 600 sims-key
-#- eval `ssh-agent -s`
-#- ssh-add sims-key
-#- ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@104.236.155.138 "TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST" 'bash -s' < remote.sh
-- source ./prepare.sh
-- export PATH="~/miniconda/bin:$PATH"
+- NOTEBOOKS="" #Directory where notebooks are stored (leave blank to search whole repository)
+- pip install runipy > /dev/null 2>&1
+- pip install jsonschema > /dev/null 2>&1
 ## add your prerequisites below ##
-- export PATH="~/conda-lsst/bin:$PATH"
 script:
 - df -kh .
-- bash setup-sims.sh
-- bash getfiles.sh
-- bash runipy.sh
+- source ./scripts/prepare.sh
+- export PATH="$PWD/miniconda/bin:$PATH"
+- source ./scripts/getfiles.sh
+- source ./scripts/runipy.sh
