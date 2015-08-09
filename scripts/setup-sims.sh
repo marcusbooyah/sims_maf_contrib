@@ -21,6 +21,3 @@ if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
 fi
 echo "Done."
-ERROR=0
-exit $ERROR
-
