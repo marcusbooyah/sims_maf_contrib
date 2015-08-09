@@ -20,4 +20,5 @@ wget -nc -q http://www.astro.washington.edu/users/lynnej/opsim/ops2_1114_sqlite.
 if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 	wget -q -O - http://www.astro.washington.edu/users/lynnej/opsim/enigma_1189_sqlite.db.gz | gunzip -c > enigma_1189_sqlite.db
 fi
+cd ../
 echo "Done."
