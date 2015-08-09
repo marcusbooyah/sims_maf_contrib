@@ -6,7 +6,7 @@ install:
 - NOTEBOOKS="tutorials" #Directory where notebooks are stored (leave blank to search whole repository)
 - pip install runipy > /dev/null 2>&1
 - pip install jsonschema > /dev/null 2>&1
-## add your prerequisites below ##
+## add your prerequisites below ###
 script:
 - df -kh .
 - source ./scripts/prepare.sh
