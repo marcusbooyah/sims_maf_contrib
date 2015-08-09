@@ -1,4 +1,4 @@
-set -e
+set -x
 ERROR=0
 source eups-setups.sh
 setup sims_maf
