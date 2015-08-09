@@ -1,9 +1,11 @@
 set -e
 ERROR=0
+source eups-setups.sh
+setup sims_maf
 while read line
         do
           	echo "Processing $line"
-                if runipy "./$line" "./$line-tested.ipynb"; then # 2>"./$line.out"; then
+                if runipy --pylab=inline "./$line" "./$line-tested.ipynb"; then # 2>"./$line.out"; then
                                 echo "$line" passed.
                         echo
                 else

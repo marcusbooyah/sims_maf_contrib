@@ -11,5 +11,6 @@ script:
 - df -kh .
 - source ./scripts/prepare.sh
 - export PATH="$PWD/miniconda/bin:$PATH"
+- source ./scripts/setup-sims.sh
 - source ./scripts/getfiles.sh
 - source ./scripts/runipy.sh
