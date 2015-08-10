@@ -4,12 +4,12 @@ python:
 install:
 - echo $TRAVIS_PULL_REQUEST
 - NOTEBOOKS="tutorials" #Directory where notebooks are stored (leave blank to search whole repository)
+- source ./scripts/prepare.sh
 - pip install runipy > /dev/null 2>&1
 - pip install jsonschema > /dev/null 2>&1
 ## add your prerequisites below ###
 script:
 - df -kh .
-- source ./scripts/prepare.sh
 - export PATH="$PWD/miniconda/bin:$PATH"
 - source ./scripts/setup-sims.sh
 - source ./scripts/getfiles.sh
