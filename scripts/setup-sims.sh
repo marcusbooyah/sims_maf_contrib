@@ -22,3 +22,5 @@ if [[ ! -f enigma_1189_sqlite.db ]] 2>"f.out"; then
 fi
 cd ../
 echo "Done."
+
+hash -r
