@@ -3,15 +3,26 @@ python:
 - 2.7
 install:
 - echo $TRAVIS_PULL_REQUEST
-- NOTEBOOKS="tutorials" #Directory where notebooks are stored (leave blank to search whole repository)
+- NOTEBOOKS="tutorials"
 - source ./scripts/prepare.sh
 - pip install ipython > /dev/null 2>&1
 - pip install runipy > /dev/null 2>&1
 - pip install jsonschema > /dev/null 2>&1
-## add your prerequisites below ###
 script:
 - df -kh .
 - export PATH="$PWD/miniconda/bin:$PATH"
 - source ./scripts/setup-sims.sh
 - source ./scripts/getfiles.sh
 - source ./scripts/runipy.sh
+rootkey:
+  csv:
+    secure: ZOodWio6QPfjhGVAiPd0bfGEo1fSHmx76Pm3nR8O9/z92QPjAPv/IIf+7uEiteGr+8oS4rK1CTRKzklAeLx6ts1VQoMXlcBN7EInHg98ksIJrm3TdFD4qKIvd/S8yTuUmUkHx6dHUuIVNuF2hNRkvPq1ZT29SBshzZL1bW5iH4LbD5VRXlMdqaNbLjXrc3a8PI5gUgROvs6rMDAwKgQf45tCjmRx3tv6CieCxrmsLPTXMFXY9bd/vokNgvkzWFCit2Op1q3a/fG8yoqPF8d81sb09EU+UixQfsINDCd+1GYVnv1/ZZY1fEMcijgoRaUSrMleCQJK4M/3F11InjRiwIMxiTM+vl+xddsNYHjMXD2lS80ffMjPl9pE3ZoPSTtuA7Nc8DKllg2UgYbI6u4+j66Too5yjgrmikSzvCKoFthQ6qQr3hpzQvU0abI9WOlRWVGcM05pepqxVV1hbr/LbyDkOkm7qCq43G+/+ezR7xI/ItkROBNP+66BpDkuMgop316xDsRwAVgd+/RbCVGbXATGiDee7Bsus1yXARWyK2HGhd1Ebuu+f7QNbGLEPbUwGugwvPCQC2Den2caYgRue5unsmfMNaVATWx0wUZP9tB7y19z72ZW4lijmdACZNgyfvQw/63I+5gzJbMvEhtBItnTrKUcnQ+nkY8fa+BLH4w=
+deploy:
+  provider: s3
+  access_key_id: AKIAI2CKONZTKXHB6GJA
+  secret_access_key:
+    secure: gBSafYll4XMcUMRMBaS0fsWy0GCTtYfNfxGi16oY6gS9H+s6EblptHSqKTVn57KPhLcyf3p/VdQBYtziny5JL68qbg/Mw4dVpRzJYnJ4EbW4TEvlvB7elQxFEC91sklnu14QKIcarycb2wTpQkMuhd+QG1bKyr6q64YLerof/lSTtHh/5ZVatyXLVDgI/SoPahTn1WrEa1ksor50X9n+mOSNJprCdIeuFrMzxW2GFX/TS3yCYSqlrRWXApfmMd+9C1k89JDFF1vh36gsbK33YnZf8jXtpOLzUMVUMZ531lzjuqOed8nYBARiM0KZm9hrP52tDbDIWyADXVZBmiADrfcD9kj6mAfXYyJfcJHTXJjMBMLyCuE0CIyq9Bf31zzsohnylkA7nntfjGDZhASoMV8Tmozx0w4cw18NlXLavMsUqLNj7/NbPHX+0Eeomhe8mlADyflSIcKAlUGR2zgoDY8m2dlFDA3j6x7vAXn6vnDAVMlsqYWtsADFk9MBn1olNuJ8moVn8NF1gK8dDzBIXQPdiszMhD6IYvRO0gxmY1hDw6SzdNpJfUqznEyrSol9kOBuE0p+n+FJPT03HB4FLDPSWpPbZG1m1OndRx14c0SrTiRLUYhM7SwMU0ILSDuot4Ru+k0DlNzNjNB4vRdKPqJW8FkMd5MAtgYHpg5DEeo=
+  bucket: IPython-notebooks
+  acl: ''
+  on:
+    repo: marcusbooyah/sims_maf_contrib
