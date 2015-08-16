@@ -9,8 +9,9 @@ while read line
                                 echo "$line" passed.
                         echo
                 else
-                                echo "$line" failed.
-                        ERROR=1
+                        echo "$line" failed.
+                        cp ./$line-tested.ipynb ./failed-notebooks
+			ERROR=1
                         echo
                 fi
         done < notebooks.out
