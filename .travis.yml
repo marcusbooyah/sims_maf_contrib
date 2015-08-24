@@ -3,27 +3,27 @@ python:
 - 2.7
 install:
 - echo $TRAVIS_PULL_REQUEST
-- NOTEBOOKS="tutorials"
-- source ./scripts/prepare.sh
-- pip install ipython > /dev/null 2>&1
+- NOTEBOOKS=""
+- d=`date +%y%m%d%H%M%S`
 - pip install runipy > /dev/null 2>&1
 - pip install jsonschema > /dev/null 2>&1
 script:
 - df -kh .
+- source ./scripts/prepare.sh
 - export PATH="$PWD/miniconda/bin:$PATH"
 - source ./scripts/setup-sims.sh
 - source ./scripts/getfiles.sh
 - source ./scripts/runipy.sh
-rootkey:
-  csv:
-    secure: ZOodWio6QPfjhGVAiPd0bfGEo1fSHmx76Pm3nR8O9/z92QPjAPv/IIf+7uEiteGr+8oS4rK1CTRKzklAeLx6ts1VQoMXlcBN7EInHg98ksIJrm3TdFD4qKIvd/S8yTuUmUkHx6dHUuIVNuF2hNRkvPq1ZT29SBshzZL1bW5iH4LbD5VRXlMdqaNbLjXrc3a8PI5gUgROvs6rMDAwKgQf45tCjmRx3tv6CieCxrmsLPTXMFXY9bd/vokNgvkzWFCit2Op1q3a/fG8yoqPF8d81sb09EU+UixQfsINDCd+1GYVnv1/ZZY1fEMcijgoRaUSrMleCQJK4M/3F11InjRiwIMxiTM+vl+xddsNYHjMXD2lS80ffMjPl9pE3ZoPSTtuA7Nc8DKllg2UgYbI6u4+j66Too5yjgrmikSzvCKoFthQ6qQr3hpzQvU0abI9WOlRWVGcM05pepqxVV1hbr/LbyDkOkm7qCq43G+/+ezR7xI/ItkROBNP+66BpDkuMgop316xDsRwAVgd+/RbCVGbXATGiDee7Bsus1yXARWyK2HGhd1Ebuu+f7QNbGLEPbUwGugwvPCQC2Den2caYgRue5unsmfMNaVATWx0wUZP9tB7y19z72ZW4lijmdACZNgyfvQw/63I+5gzJbMvEhtBItnTrKUcnQ+nkY8fa+BLH4w=
 deploy:
   provider: s3
-  access_key_id: AKIAI2CKONZTKXHB6GJA
+  access_key_id: AKIAJ4ES7TUSEYC7TJ4Q
   secret_access_key:
-    secure: gBSafYll4XMcUMRMBaS0fsWy0GCTtYfNfxGi16oY6gS9H+s6EblptHSqKTVn57KPhLcyf3p/VdQBYtziny5JL68qbg/Mw4dVpRzJYnJ4EbW4TEvlvB7elQxFEC91sklnu14QKIcarycb2wTpQkMuhd+QG1bKyr6q64YLerof/lSTtHh/5ZVatyXLVDgI/SoPahTn1WrEa1ksor50X9n+mOSNJprCdIeuFrMzxW2GFX/TS3yCYSqlrRWXApfmMd+9C1k89JDFF1vh36gsbK33YnZf8jXtpOLzUMVUMZ531lzjuqOed8nYBARiM0KZm9hrP52tDbDIWyADXVZBmiADrfcD9kj6mAfXYyJfcJHTXJjMBMLyCuE0CIyq9Bf31zzsohnylkA7nntfjGDZhASoMV8Tmozx0w4cw18NlXLavMsUqLNj7/NbPHX+0Eeomhe8mlADyflSIcKAlUGR2zgoDY8m2dlFDA3j6x7vAXn6vnDAVMlsqYWtsADFk9MBn1olNuJ8moVn8NF1gK8dDzBIXQPdiszMhD6IYvRO0gxmY1hDw6SzdNpJfUqznEyrSol9kOBuE0p+n+FJPT03HB4FLDPSWpPbZG1m1OndRx14c0SrTiRLUYhM7SwMU0ILSDuot4Ru+k0DlNzNjNB4vRdKPqJW8FkMd5MAtgYHpg5DEeo=
-  bucket: IPython-notebooks
-  local_dir: failed-notebooks
-  acl: ''
+    secure: MYIvErTWHElp1rOGcy3FadR52aWxf507BYdJ5/S9v/NjFehx9M3yu6mCwatPcYgRoXukVJsVpNffeAPfo3RobGr9U+H+TOF5P4r8Dc5ZewbiJt5ZjydUf2uQeYHPBvD1AQUEhF+8nv6Mmhge1CLEhH7oUUrS2be4n2aqyIM+9UjLMZtdja8N3e3q0SLwbtD2A1qq22qI5DQSyQVhs+4BC9xUQgZPUOv0ZdndnmYf9glp5rk7teutO3f/a2zqYWZuA3DVdE4XPs2vQPsL9D0p2Xi/A1yVjKUtc0L/9WZSuAUzXel2gtHDJxFtnx+3nGVrIonwWNvUJmbxJ1Klg3IuPVkN8osWnXE7OdgdYqyzodKSTGLRd05GgVvzOuT+eFnZuAYPOopRwdHAWvN1juzC46KeTOeCQh5ZiTpB0p79xWYUt+Lm/IyW3bCaYDV/R7Pmu1greOGRL9c4TwwZlbI3tfGiw0MklLZPGoaiPU2tRIfYau3vzsO+s2uUHHsVmpBKHjM/BjtjWoVHMDjAeEoV6QT4O0CBoWVsQ3Hdqrvy8caQZ+/V1A9LI84vzhVW2ccif3dc0WvgCyHrL24uKVRNuG6/ZwXcYeQozYmYAlQXZbg0xBH9sieB/fknDZf88Kyisi4xIB1DTqo1xM+WcxmLNLjEWtsPCyN5ogOPK0lEsgs=
+  bucket: sims-maf-contrib
+  skip_cleanup: true
+  local-dir: fails
+  upload-dir: "$d"
   on:
-    repo: marcusbooyah/sims_maf_contrib
+    all_branches: true
+after_deploy:
+- exit $ERROR
