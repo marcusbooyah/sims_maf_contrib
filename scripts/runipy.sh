@@ -4,6 +4,12 @@ mkdir fails
 while read line
         do
           	echo "Processing $line"
+          	if [[ "$line" == tutorials/SDSSSlicer.ipynb ]]; then
+			continue
+		fi
+		if [[ "$line" == tutorials/MAFCameraGeom.ipynb ]]; then
+          	continue
+       		fi
                 if runipy "./$line" "./$line-tested.ipynb" 2>"./$line.out"; then
                         echo "$line" passed.
                         echo
