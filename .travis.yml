@@ -24,4 +24,4 @@ deploy:
   upload-dir: "$d"
   on:
     repo: marcusbooyah/sims_maf_contrib
-    branch: all
+    all_branches: true
