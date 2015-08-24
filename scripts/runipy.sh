@@ -22,7 +22,7 @@ while read line
         done < notebooks.out
 if [ $ERROR = 1 ]; then
 	echo "The following notebooks failed"
-	find . -name "*failed.ipynb" | xargs tar cvf - | (cd ./fails ; tar xfp -)
+	find . -name "*failed.ipynb" -print0 | xargs -0 tar cvf "-" | (cd ./fails ; tar xfp "-")
 else
 	echo "All notebooks passed"
 fi
