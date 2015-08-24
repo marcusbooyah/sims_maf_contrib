@@ -34,7 +34,7 @@ if [[ ! -f "$PWD/miniconda/.installed" ]] 2>"f.out"; then
 	export PATH="$PWD/miniconda/bin:$PATH"
         conda install -q conda-build jinja2 binstar requests sqlalchemy pip --yes > /dev/null 2>&1
 
-        pip install requests_file runipy jsonschema ipython[all] > /dev/null 2>&1
+        pip install requests_file runipy jsonschema > /dev/null 2>&1
 
         # marker that we're done
         touch "$PWD/miniconda/.installed"
