@@ -4,9 +4,7 @@ python:
 install:
 - echo $TRAVIS_PULL_REQUEST
 - NOTEBOOKS="tutorials"
-- d=`date +%y%m%d%H%M%S`
-- pip install runipy > /dev/null 2>&1
-- pip install jsonschema > /dev/null 2>&1
+- d=`TZ=":US/Pacific" date +%y-%m-%d----%H:%M:%S`
 script:
 - df -kh .
 - source ./scripts/prepare.sh
@@ -14,16 +12,16 @@ script:
 - source ./scripts/setup-sims.sh
 - source ./scripts/getfiles.sh
 - source ./scripts/runipy.sh
+after_deploy:
+- exit $ERROR
 deploy:
   provider: s3
-  access_key_id: AKIAJ4ES7TUSEYC7TJ4Q
+  access_key_id: AKIAJF3H4NKNLZHNHKWA
   secret_access_key:
-    secure: MYIvErTWHElp1rOGcy3FadR52aWxf507BYdJ5/S9v/NjFehx9M3yu6mCwatPcYgRoXukVJsVpNffeAPfo3RobGr9U+H+TOF5P4r8Dc5ZewbiJt5ZjydUf2uQeYHPBvD1AQUEhF+8nv6Mmhge1CLEhH7oUUrS2be4n2aqyIM+9UjLMZtdja8N3e3q0SLwbtD2A1qq22qI5DQSyQVhs+4BC9xUQgZPUOv0ZdndnmYf9glp5rk7teutO3f/a2zqYWZuA3DVdE4XPs2vQPsL9D0p2Xi/A1yVjKUtc0L/9WZSuAUzXel2gtHDJxFtnx+3nGVrIonwWNvUJmbxJ1Klg3IuPVkN8osWnXE7OdgdYqyzodKSTGLRd05GgVvzOuT+eFnZuAYPOopRwdHAWvN1juzC46KeTOeCQh5ZiTpB0p79xWYUt+Lm/IyW3bCaYDV/R7Pmu1greOGRL9c4TwwZlbI3tfGiw0MklLZPGoaiPU2tRIfYau3vzsO+s2uUHHsVmpBKHjM/BjtjWoVHMDjAeEoV6QT4O0CBoWVsQ3Hdqrvy8caQZ+/V1A9LI84vzhVW2ccif3dc0WvgCyHrL24uKVRNuG6/ZwXcYeQozYmYAlQXZbg0xBH9sieB/fknDZf88Kyisi4xIB1DTqo1xM+WcxmLNLjEWtsPCyN5ogOPK0lEsgs=
+    secure: NqlQQtvLXi6F+NPT4Yf7bqEK0cL3hixwFTUwfiIdA42dLFBn05mmaaoEErJre087NHQON32lmgTXagZZdja8PNW2tnl2UiQ6TTdqtFZIGsXsahBcZvgx82bz7RffN+wkm8Hes4lBdKs3eFzJ9pdS53BgFhYq2vQxmGuHt1/w3LEKLxQIfdc7LRGiDz/39EXsFhPfKqGI0OvpAfm4KE45wnWBGLpFDxu97B+THu4geaiEAvZCmsfpeYMZxTt1vytC0P6llklaKXj6qYGw4qtnzglw5MRCDt2/1zhDuR7CWEDa4Ss4dxRVQZx4Tx1qHkbwgcb9pgK9RtntCG+Vul0j8gJQJtOLkMmcehy3mS1DBYsgLi9hPxQgAZ5r1+wPdLmHtlX9wxGA1Vx5Ul0JQ27svWlswhNNm4VsoLon2GI8yBGJfy4q1JbNz3q5iOWBHiM5WmhHP4QD/5JyNdrxGbp1emMZnrDQNAdwAy3/bKy2KvLzG0tXOW6JNRPWHGcH+26w62UtypwlFPdQvUGcF5uDsICG492vqEpTlXAXr9050V0+qkE60o4Jyun8HUPP+NJU056thOV4m4LuwKFOBW44SgB9VJSuH78f8NR+J8axnZmlxZSs8YHzczEUzlcU2hHc/v16TfOtcu5FBJDytqvFCDXje5OgegPrsNZMTKt3xsA=
   bucket: sims-maf-contrib
-  skip_cleanup: true
   local-dir: fails
   upload-dir: "$d"
   on:
-    all_branches: true
-after_deploy:
-- exit $ERROR
+    repo: marcusbooyah/sims_maf_contrib
+    branch: IPy-CI

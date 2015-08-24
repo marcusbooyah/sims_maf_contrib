@@ -1,11 +1,16 @@
 set -e
 ERROR=0
-source eups-setups.sh
-setup sims_maf
+mkdir fails
 while read line
         do
           	echo "Processing $line"
-                if runipy "./$line" "./$line-tested.ipynb" ; then #2>"./$line.out"; then
+          	if [[ "$line" == tutorials/SDSSSlicer.ipynb ]]; then
+			continue
+		fi
+		if [[ "$line" == tutorials/MAFCameraGeom.ipynb ]]; then
+          	continue
+       		fi
+                if runipy "./$line" "./$line-tested.ipynb" 2>"./$line.out"; then
                         echo "$line" passed.
                         echo
                 else
@@ -17,7 +22,7 @@ while read line
         done < notebooks.out
 if [ $ERROR = 1 ]; then
 	echo "The following notebooks failed"
-	find . -name "*failed.ipynb" | xargs tar cvf - | (cd ./fails ; tar xfp -)
+	find . -name "*failed.ipynb" -print0 | xargs -0 tar cvf "-" | (cd ./fails ; tar xfp "-")
 else
 	echo "All notebooks passed"
 fi
