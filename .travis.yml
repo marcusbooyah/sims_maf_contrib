@@ -1,0 +1,15 @@
+language: python
+python:
+- 2.7
+install:
+- echo $TRAVIS_PULL_REQUEST
+- NOTEBOOKS="tutorials"
+- d=`TZ=":US/Pacific" date +%y-%m-%d----%H:%M:%S`
+script:
+- df -kh .
+- source ./scripts/prepare.sh
+- export PATH="$PWD/miniconda/bin:$PATH"
+- source ./scripts/getfiles.sh
+- source ./scripts/runipy.sh
+after_deploy:
+- exit $ERROR
